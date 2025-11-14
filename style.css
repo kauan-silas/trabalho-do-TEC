@@ -76,24 +76,16 @@ h1 {
     cursor: pointer;
     font-size: 18px;
     font-weight: bold;
-    color: white;
+    color: rgb(0, 0, 0);
     transition: background-color 0.3s ease; /* Efeito de transição */
 }
 
 /* Botão GIRAR ROLETA (Verde) */
 #btnGirar {
-    background-color: #28a745; /* Cor verde */
-}
-
-#btnGirar:hover {
-    background-color: #1e7e34; /* Verde mais escuro no hover */
+    background-color: #09ff00; /* Cor verde */
 }
 
 /* Botão PARAR ROLETA (Vermelho) */
 #btnParar {
-    background-color: #dc3545; /* Cor vermelho */
-}
-
-#btnParar:hover {
-    background-color: #bd2130; /* Vermelho mais escuro no hover */
+    background-color:  #dc3545; /* Cor vermelho */
 }
