@@ -1,6 +1,9 @@
 
-   /* --- ESTILOS GERAIS --- */
+/* --- ESTILOS GERAIS --- */
 body {
+    display: flex; /* Novo: Para centralizar melhor o conteúdo */
+    flex-direction: column;
+    align-items: center;
     text-align: center;
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
@@ -11,61 +14,76 @@ h1 {
     margin-bottom: 30px;
 }
 
+/* --- FLECHA (PONTEIRO) --- */
+#ponteiro {
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 25px solid #000000; /* Cor da flecha */
+    position: absolute; /* Posicionamento livre */
+    top: 100px; /* Ajuste a posição vertical sobre a roleta */
+    z-index: 20; /* Garante que fique acima de tudo */
+    transform: translateX(0px); /* Ajuste fino, se necessário */
+}
+
 /* --- SEÇÃO ROLETA --- */
 #roleta {
-    /* Define o tamanho do círculo */
     width: 350px;
     height: 350px;
-    
-    background-color: #1a1a1a; /* Fundo escuro da roleta */
-    margin: 0 auto 50px auto;
-    
-    /* Cria o círculo perfeito */
+    background-color: #1a1a1a;
+    /* Alinhamento de margem removido, pois o body faz o centro */
+    margin-bottom: 50px; 
     border-radius: 50%;
-    border: 10px solid #333; /* Borda externa */
-    
-    position: relative; /* Essencial para posicionar as linhas e quadrantes */
+    border: 10px solid #333;
+    position: relative;
     overflow: hidden; 
-}
-
-/* --- LINHAS CENTRAIS (CRUZ) --- */
-
-.linha-horizontal-centralizada,
-.linha-vertical-centralizada {
-    position: absolute; 
-    background-color: #ffffff; /* Cor branca para a cruz */
-    z-index: 10; /* Garante que a cruz fique sobre os quadrantes */
-}
-
-/* LINHA HORIZONTAL */
-.linha-horizontal-centralizada {
-    width: 100%; 
-    height: 2px; /* Espessura da linha horizontal */
-    top: 50%; 
-    transform: translateY(-50%); 
-}
-
-/* LINHA VERTICAL */
-.linha-vertical-centralizada {
-    height: 100%; 
-    width: 2px; /* Espessura da linha vertical */
-    left: 50%; 
-    transform: translateX(-50%);
+    /* Garante que o ponto de giro seja o centro */
+    transform-origin: center center; 
 }
 
 /* --- QUADRANTES (Para dar um visual de roleta dividida) --- */
+/* Esta seção já estava boa, apenas renomeada a classe para 'quadrante' */
 .quadrante {
     width: 50%;
     height: 50%;
     position: absolute;
-    opacity: 0.8;
+    opacity: 1; /* Aumentado para 1 para cores mais vibrantes */
 }
 
 #q1 { background-color: #ffcc00; top: 0; left: 0; }     /* Amarelo Superior Esquerdo */
 #q2 { background-color: #007bff; top: 0; right: 0; }    /* Azul Superior Direito */
-#q3 { background-color: #dc3545; bottom: 0; left: 0; }   /* Vermelho Inferior Esquerdo */
-#q4 { background-color: #28a745; bottom: 0; right: 0; } /* Verde Inferior Direito */
+#q3 { background-color: #dc3545; bottom: 0; right: 0; } /* Vermelho Inferior Direito (Ajustado a posição) */
+#q4 { background-color: #28a745; bottom: 0; left: 0; }  /* Verde Inferior Esquerdo (Ajustado a posição) */
 
+
+/* --- LINHAS CENTRAIS (CRUZ) --- */
+.linha-horizontal-centralizada,
+.linha-vertical-centralizada {
+    position: absolute; 
+    background-color: #ffffff;
+    z-index: 10;
+}
+
+.linha-horizontal-centralizada {
+    width: 100%; 
+    height: 3px; 
+    top: 50%; 
+    transform: translateY(-50%); 
+}
+
+.linha-vertical-centralizada {
+    height: 100%; 
+    width: 3px; 
+    left: 50%; 
+    transform: translateX(-50%);
+}
+
+/* --- ANIMAÇÃO DE GIRO (CSS KEYFRAMES) --- */
+@keyframes spin-forever {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
 
 /* --- SEÇÃO BOTÕES --- */
 #botoes button {
@@ -76,16 +94,22 @@ h1 {
     cursor: pointer;
     font-size: 18px;
     font-weight: bold;
-    color: rgb(0, 0, 0);
-    transition: background-color 0.3s ease; /* Efeito de transição */
+    color: white; /* Cor da fonte branca para contraste */
+    transition: background-color 0.3s ease;
 }
 
-/* Botão GIRAR ROLETA (Verde) */
 #btnGirar {
-    background-color: #09ff00; /* Cor verde */
+    background-color: #09ff00;
 }
 
-/* Botão PARAR ROLETA (Vermelho) */
-#btnParar {
-    background-color:  #dc3545; /* Cor vermelho */
+#btnGirar:hover {
+    background-color: #07e000;
+}
+
+#btnPara {
+    background-color: #dc3545;
+}
+
+#btnPara:hover {
+    background-color: #c82333;
 }
